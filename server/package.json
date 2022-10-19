@@ -1,0 +1,20 @@
+{
+  "name": "vcms_server",
+  "version": "1.0.0",
+  "description": "Server side to manage backend of verifiable credential management system",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "devStart": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shape It Solutions",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.20"
+  }
+}
