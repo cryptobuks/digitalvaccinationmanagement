@@ -9,6 +9,8 @@ import MetamaskModal from "../../common/modal/metamaskModal/MetamaskModal";
 import ConnectWallet from "../../common/modal/metamask/ConnectWallet";
 import StyleWrapper from "./StyleWrapper";
 import Calendar from "../../components/section/calendar";
+import Axios from "axios"
+
 
 const Holder = () => {
   const [isCollapse, setCollapse] = useState(true);
@@ -30,6 +32,26 @@ const Holder = () => {
       });
     }
   }, [isCollapse]);
+
+
+  const [firstname, setFirstname] = useState('')
+  const [surname, setSurname] = useState('')
+  const [id_passport, setID_Passport] = useState('')
+  const [cellphone, setCellphone] = useState('')
+  const [email, setEmail] = useState('')
+  
+  const makeAppointment = async()=>{
+    console.log("make appointment clicked...")
+    Axios.post("http://localhost:3001/api/make_appointment",{
+      firstName:firstname,
+      surname:surname,
+      id_passport:id_passport,
+      cellphone:cellphone,
+      email:email
+    }).then((resp)=>{
+      alert(resp.data)
+    })
+  }
 
   return (
       <>
@@ -239,7 +261,9 @@ const Holder = () => {
                         </div>
                       </div>
                       {/*BEGIN MODAL*/}
-                      <div className="modal fade none-border" id="event-modal">
+                      
+                      {/* <div className="modal fade none-border" id="event-modal"> */}
+                      <div className="" id="event-modal">
                         <div className="modal-dialog">
                           <div className="modal-content">
                             <div className="modal-header">
@@ -254,31 +278,51 @@ const Holder = () => {
                                     <div className="form-group row">
                                       <label className="col-sm-3 col-form-label">First Name</label>
                                       <div className="col-sm-9">
-                                        <input type="text" className="form-control" placeholder="Enter your first name"/>
+                                        <input type="text" className="form-control" 
+                                        placeholder="Enter your first name"
+                                        name="firstname"
+                                        onChange={(e)=>{setFirstname(e.target.value)}}
+                                      />
                                       </div>
                                     </div>
                                     <div className="form-group row">
                                       <label className="col-sm-3 col-form-label">Surname</label>
                                       <div className="col-sm-9">
-                                        <input type="text" className="form-control" placeholder="Enter your surname" />
+                                        <input type="text" className="form-control" 
+                                          placeholder="Enter your surname"
+                                          name="surname"
+                                          onChange={(e)=>{setSurname(e.target.value)}}
+                                      />
                                       </div>
                                     </div>
                                     <div className="form-group row">
                                       <label className="col-sm-3 col-form-label">ID/Passport</label>
                                       <div className="col-sm-9">
-                                        <input type="text" className="form-control" placeholder="Enter you ID or passport number" />
+                                        <input type="text" className="form-control" 
+                                          placeholder="Enter you ID or passport number" 
+                                          name="id_passport"
+                                          onChange={(e)=>{setID_Passport(e.target.value)}}
+                                        />
                                       </div>
                                     </div>
                                     <div className="form-group row">
                                       <label className="col-sm-3 col-form-label">Cellphone</label>
                                       <div className="col-sm-9">
-                                        <input type="text" className="form-control" placeholder="Enter your phone number" />
+                                        <input type="text" className="form-control" 
+                                          placeholder="Enter your phone number" 
+                                          name="cellphone"
+                                          onChange={(e)=>{setCellphone(e.target.value)}}
+                                        />
                                       </div>
                                     </div>
                                     <div className="form-group row">
                                       <label className="col-sm-3 col-form-label">Email</label>
                                       <div className="col-sm-9">
-                                        <input type="email" className="form-control" placeholder="Enter your email address" />
+                                        <input type="email" className="form-control" 
+                                          placeholder="Enter your email address" 
+                                          name="email"
+                                          onChange={(e)=>{setEmail(e.target.value)}}
+                                        />
                                       </div>
                                     </div>
                                   </form>
@@ -303,7 +347,10 @@ const Holder = () => {
                     <button type="button" className="btn btn-primary full-width">Issuer Portal</button>
                   </div>
                   <div className="col-xl-6">
-                    <button type="button" className="btn btn-primary full-width">Make Appointment</button>
+                    <button type="button" className="btn btn-primary full-width"
+                      onClick={makeAppointment}
+                    >
+                    Make Appointment</button>
                   </div>
                 </div>
                 {/*<div className="divider"></div>-*/}

@@ -19,9 +19,19 @@ const Calendar = () => {
           eventClick={
               (args) =>{
                 if(args.event.title === 'Booked'){
-                  alert("This slote is booked, please choose the green ones "+args.event.title);
+                  var elems = document.getElementsByClassName('basic-form');
+                  for (var i=0;i<elems.length;i+=1){
+                    elems[i].style.display = 'flex';
+                  }
+                  console.log( "Here "+document.getElementById('event-modal').id)
+                  document.getElementById('event-modal').style.display = "block"
+                  document.getElementById('event-modal').style.zIndex = "1"
+                  alert("This slot is booked, please choose the green ones "+args.event.title);
                 }
                 else{
+                  console.log( "Here "+document.getElementById('event-modal'))
+                  document.getElementById('event-modal').style.display = "block"
+                  document.getElementById('event-modal').style.zIndex = "1"
                   alert(args.event.title +" is successfull booked.");
                   args.event.setTitle ="Booked"
                   args.event.setBackgroundColor="red";

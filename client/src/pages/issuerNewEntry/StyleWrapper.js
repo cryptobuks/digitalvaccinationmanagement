@@ -105,11 +105,6 @@ const StyleWrapper = styled.div`
         }
       }
     }
-    #event-modal{
-      display:block;
-      backgroundColor:'red'
-      zIndex: 1;
-    }
   }
 `;
 
